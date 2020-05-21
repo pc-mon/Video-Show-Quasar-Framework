@@ -27,7 +27,7 @@
   </q-page>
 </template>
 
-<script lang="ts">
+<script>
 export default {
   name: 'Video',
   data () {
@@ -41,13 +41,13 @@ export default {
     }
   },
   created () {
-    this.$axios.get(this.$wepurl + 'video/').then((r:Array<any>) => {
+    this.$axios.get(this.$wepurl + 'video/').then(r => {
       this.videos = r.data
     })
   },
   methods: {
     saveNewVideo(){
-      this.$axios.post(this.$wepurl + 'video',{...this.newVideo}).then((r:Array<any>) =>{
+      this.$axios.post(this.$wepurl + 'video',{...this.newVideo}).then(r =>{
         this.videos.push({...this.newVideo})
         this.$q.notify({
           'message': 'Video Saved!'
@@ -64,7 +64,7 @@ export default {
       })
     },
     deleteVideo(key){
-      this.$axios.delete(this.$wepurl + 'video/' + this.videos[key].id).then((r:Array<any>) =>{
+      this.$axios.delete(this.$wepurl + 'video/' + this.videos[key].id).then(r =>{
         this.videos.splice(key,1)
         this.$q.notify({
           'message': 'Deleted!'
